@@ -1,0 +1,536 @@
+/* --- ESTILOS GENERALES --- */
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    line-height: 1.6;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+h1, h2, h3 {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+h1 {
+    font-size: 3.5rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+h2 {
+    font-size: 2rem;
+    color: #cc0000;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+h3 {
+    font-size: 1.4rem;
+    color: #cccccc;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* --- NAVEGACIÓN PRINCIPAL (NAVBAR) --- */
+nav {
+    background-color: #0a0a0a;
+    padding: 0.8rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav .nav-logo img {
+    height: 35px;
+    display: block;
+}
+nav .nav-center-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+nav .nav-center-logo img {
+    height: 45px;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+nav li {
+    margin: 0 1.0rem;
+}
+nav a {
+    color: #f0f0f0;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-bottom-color 0.3s;
+}
+nav a:hover {
+    color: #cc0000;
+}
+nav a.active {
+    color: #cc0000;
+    border-bottom-color: #cc0000;
+}
+
+/* --- ENCABEZADO (HERO SECTION) --- */
+.hero {
+    padding: 6rem 1rem;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    animation: slowZoom 25s infinite alternate ease-in-out;
+}
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+}
+.hero {
+    background-image: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url(fondo-f1.png);
+    background-position: top;
+}
+.hero .subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 1rem auto;
+}
+.hero-premios {
+    background-image: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url(premio-sao-paulo.jpg);
+}
+.hero-ranking {
+    background-image: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url(max.jpg);
+}
+.hero-criterios {
+    background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url(criterios.jpg);
+}
+@keyframes slowZoom {
+    0% { background-size: 110%; }
+    100% { background-size: 120%; }
+}
+
+/* --- SUB-NAVEGACIÓN DE CATEGORÍAS --- */
+.category-sub-nav {
+    background-color: #1a1a1a;
+    text-align: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.category-sub-nav a {
+    color: #a0a0a0;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0.8rem 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 5px 5px 0 0;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s, background-color 0.3s;
+    display: inline-block;
+}
+.category-sub-nav a:hover {
+    color: #ffffff;
+    background-color: #2a2a2a;
+}
+.category-sub-nav a.active {
+    color: #ffffff;
+    background-color: #1e1e1e;
+    border-bottom: 3px solid #cc0000;
+}
+
+/* --- TARJETAS DE CATEGORÍA (INICIO) --- */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    align-items: stretch; 
+}
+.category-grid a {
+    text-decoration: none;
+    display: flex;
+}
+.category-card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(204, 0, 0, 0.4);
+    border-color: #cc0000;
+}
+.category-card h3 {
+    margin-top: 0;
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+.category-card p {
+    color: #aaa;
+    margin: 1rem 0;
+    flex-grow: 1; 
+}
+.btn {
+    display: inline-block;
+    background-color: #cc0000;
+    color: #ffffff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 700;
+    margin-top: 1rem;
+    text-transform: uppercase;
+}
+.btn:hover {
+    background-color: #a30000;
+    transform: scale(1.05);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+/* --- CONTENIDO GENÉRICO DE PÁGINAS --- */
+.card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* --- ESTILOS DE TABLAS --- */
+.table-container { overflow-x: auto; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+th, td {
+    padding: 0.8rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+.table-container th:first-child,
+.table-container td:first-child,
+.table-container th:nth-child(2),
+.table-container td:nth-child(2) {
+    text-align: left;
+}
+thead th { background-color: #333; color: #ffffff; font-weight: 700; }
+tbody tr:nth-child(even) { background-color: #2a2a2a; }
+tbody tr:hover { background-color: #cc0000; color: #ffffff; }
+.tie-breaker { font-style: italic; color: #aaa; margin-top: 1rem; font-size: 0.9rem; }
+
+/* --- ESTILOS PÁGINA DE PREMIOS --- */
+.prize-showcase {
+    display: flex;
+    align-items: stretch;
+    gap: 2rem;
+    background-color: #1a1a1a;
+    padding: 2rem;
+    border-radius: 8px;
+}
+.prize-image-container {
+    flex: 1.2;
+    background-color: #0a0a0a;
+}
+.prize-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+.prize-details-container {
+    flex: 1;
+}
+.prize-details-container h3 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    border-left: 4px solid #cc0000;
+    padding-left: 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
+.prize-details-container .event-dates {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #b0b0b0;
+    text-transform: none;
+    margin-top: -1rem;
+}
+.prize-includes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.prize-includes-list li {
+    background: #252525;
+    border-radius: 5px;
+    margin-bottom: 0.8rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+.prize-includes-list i {
+    color: #009739; /* <-- VERDE BRASIL */
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+    margin-right: 1rem;
+}
+.prize-includes-list span {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* --- ESTILOS PARA ITINERARIO --- */
+.itinerary-section {
+    margin-top: 3rem;
+    text-align: center;
+}
+.itinerary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.itinerary-day {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-top: 4px solid;
+    transition: transform 0.2s ease;
+}
+.itinerary-day:hover {
+    transform: translateY(-5px);
+}
+.itinerary-day h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: #ffffff; /* <-- TÍTULO BLANCO */
+}
+.itinerary-day:nth-child(1) { border-color: #009739; } /* Verde */
+.itinerary-day:nth-child(2) { border-color: #FFDF00; } /* Amarillo */
+.itinerary-day:nth-child(3) { border-color: #002776; } /* Azul */
+
+/* --- ESTILOS PÁGINA DE FAQ (ACORDEÓN) --- */
+.faq-list {
+    margin-top: 2.5rem;
+}
+.faq-item {
+    border-bottom: 1px solid #333;
+    margin-bottom: 1rem;
+}
+.faq-question {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    cursor: pointer;
+    padding: 1.2rem 1rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    position: relative;
+    padding-right: 2.5rem;
+}
+.faq-question::after {
+    content: '\002B';
+    color: #cc0000;
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.faq-question.active::after {
+    content: "\2212";
+}
+.faq-answer {
+    padding: 0 1rem;
+    background-color: #1e1e1e;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+.faq-answer p {
+    color: #aaa;
+    margin: 0;
+    padding: 1rem 0;
+    line-height: 1.7;
+}
+
+/* --- ESTILOS PARA PESTAÑAS --- */
+.criterios-content, .ranking-content {
+    display: none; 
+}
+.criterios-content.active, .ranking-content.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- CONTADOR REGRESIVO --- */
+.countdown-container {
+    background-color: #0a0a0a;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.countdown-box {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1rem;
+    min-width: 100px;
+}
+.countdown-box span {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #cc0000;
+    display: block;
+}
+.countdown-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #a0a0a0;
+    margin-top: 0.5rem;
+}
+.section-heading {
+    text-align: center;
+    border-bottom: 2px solid #333;
+}
+
+/* --- FOOTER Y BOTÓN SCROLL --- */
+footer { text-align: center; padding: 2rem 1rem; margin-top: 2rem; background-color: #0a0a0a; color: #777; font-size: 0.9rem; }
+#scrollTopBtn {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    border: none;
+    outline: none;
+    background-color: #cc0000;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s, visibility 0.4s;
+}
+#scrollTopBtn.show {
+    visibility: visible;
+    opacity: 1;
+}
+#scrollTopBtn:hover {
+    background-color: #a30000;
+}
+
+/* --- MENÚ HAMBURGUESA Y RESPONSIVE DESIGN --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+.menu-toggle.is-active .bar:nth-child(1) { transform: rotate(45deg) translate(7px, 6px); }
+.menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+.menu-toggle.is-active .bar:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+@media (max-width: 860px) {
+    .prize-showcase {
+        flex-direction: column;
+    }
+}
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .hero { background-attachment: scroll; }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 61px;
+        left: 0;
+        width: 100%;
+        background-color: #0a0a0a;
+        padding-bottom: 1rem;
+        border-top: 1px solid #333;
+    }
+    .nav-links.is-active {
+        display: flex;
+    }
+    nav li {
+        margin: 1rem 0;
+        text-align: center;
+        width: 100%;
+    }
+    nav .nav-center-logo {
+        display: none;
+    }
+    .menu-toggle {
+        display: flex;
+    }
+}
+/* --- ESTILO PARA IMAGEN DE TÍTULO EN ENCABEZADO --- */
+.hero-title-image {
+    max-height: 250px; /* Altura máxima para que no sea demasiado grande. Puedes ajustar este valor. */
+    width: auto;       /* Mantiene la proporción de la imagen */
+    margin-bottom: 0.8rem; /* Espacio debajo, antes del subtítulo */
+}
