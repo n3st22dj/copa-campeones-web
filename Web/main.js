@@ -1,6 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- LÓGICA PARA LEER DATOS DE GOOGLE SHEETS ---
+    // --- LÓGICA PARA EL MENÚ HAMBURGUESA ---
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('is-active');
+            navLinks.classList.toggle('is-active');
+        });
+    }
+
+    // --- LÓGICA PARA EL ACORDEÓN DE LA PÁGINA FAQ ---
+    const faqQuestions = document.querySelectorAll(".faq-question");
+    if (faqQuestions.length > 0) {
+        faqQuestions.forEach(question => {
+            question.addEventListener("click", () => {
+                question.classList.toggle("active");
+                const answer = question.nextElementSibling;
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                } 
+            });
+        });
+    }
+    
+    // --- LÓGICA PARA LEER DATOS DE GOOGLE SHEETS (ESTA ES LA SECCIÓN) ---
     if (document.title.includes("Ranking")) {
         // Enlace público de tu hoja de cálculo (formato CSV)
         const googleSheetCSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCN9Kcegu7t56R9UNop3YIOAihoqClByfIUQxFVIL8K9GZ2vDB5DDTtvzmB6Kj-sSaLenzaUSAyl7X/pub?output=csv';
@@ -25,12 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         rows.forEach(rowText => {
                             const cells = rowText.split(',');
-                            if (cells.length >= 4) { // Asegurarnos de que la fila tiene datos
+                            if (cells.length >= 3) { // Asegurarnos de que la fila tiene al menos 3 celdas de datos
                                 const newRow = tableBody.insertRow();
-                                newRow.insertCell().textContent = cells[0].trim();
-                                newRow.insertCell().textContent = cells[1].trim();
-                                newRow.insertCell().textContent = cells[2].trim();
-                                newRow.insertCell().textContent = cells[3].trim();
+                                newRow.insertCell().textContent = cells[0] ? cells[0].trim() : '';
+                                newRow.insertCell().textContent = cells[1] ? cells[1].trim() : '';
+                                newRow.insertCell().textContent = cells[2] ? cells[2].trim() : '';
+                                // Añadir la cuarta celda solo si existe
+                                if(cells[3]) {
+                                    newRow.insertCell().textContent = cells[3].trim();
+                                }
                             }
                         });
                     }).catch(error => {
@@ -40,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // GIDs REALES INSERTADOS
+        // GIDs que me proporcionaste
         const gidAsesor = '1865916927';
         const gidRepuestos = '1058654686';
         const gidJefe = '1691736347';
@@ -50,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchRankingData('repuestos-body', gidRepuestos);
         fetchRankingData('jefe-body', gidJefe);
     }
-
 
     // --- LÓGICA PARA LAS PESTAÑAS (CRITERIOS Y RANKING) ---
     const subNavContainers = document.querySelectorAll('.category-sub-nav');
@@ -65,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const contentPanels = document.querySelectorAll(`.${pageId}-content`);
 
                 const activateTab = (tab) => {
+                    if (!tab) return;
                     tabs.forEach(t => t.classList.remove('active'));
                     contentPanels.forEach(panel => panel.classList.remove('active'));
                     tab.classList.add('active');
@@ -87,34 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tabFromHash = container.querySelector(`a[href="${hash}"]`);
                     if (tabFromHash) { initialTab = tabFromHash; }
                 }
-                if(initialTab) { activateTab(initialTab); }
+                activateTab(initialTab);
             }
-        });
-    }
-
-    // --- LÓGICA PARA EL MENÚ HAMBURGUESA ---
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('is-active');
-            navLinks.classList.toggle('is-active');
-        });
-    }
-
-    // --- LÓGICA PARA EL ACORDEÓN DE FAQ ---
-    const faqQuestions = document.querySelectorAll(".faq-question");
-    if (faqQuestions.length > 0) {
-        faqQuestions.forEach(question => {
-            question.addEventListener("click", () => {
-                question.classList.toggle("active");
-                const answer = question.nextElementSibling;
-                if (answer.style.maxHeight) {
-                    answer.style.maxHeight = null;
-                } else {
-                    answer.style.maxHeight = answer.scrollHeight + "px";
-                } 
-            });
         });
     }
 
@@ -129,10 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
             document.getElementById('days').innerText = days;
             document.getElementById('hours').innerText = hours;
             document.getElementById('minutes').innerText = minutes;
             document.getElementById('seconds').innerText = seconds;
+
             if (distance < 0) {
                 clearInterval(interval);
                 countdownElement.innerHTML = `<h2 style="color: #cc0000;">¡EL CONCURSO HA FINALIZADO!</h2>`;
